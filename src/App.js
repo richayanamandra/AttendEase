@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router";
 import HomePage from "./Pages/HomePage";
 import Dashboard from "./Pages/Dashboard";
 import Attendance from "./Pages/Attendance";
+import StudProfile from "./Pages/StudProfile";
 function App(){
     return(
         <>
@@ -13,6 +14,7 @@ function App(){
                         <Route index element={<Dashboard></Dashboard>}/>
                         <Route path="/dashboard" element={<Dashboard></Dashboard>}/>
                         <Route path="/attendance" element={<Attendance></Attendance>}/>
+                        <Route path="/studentProflie/:id" element={<StudProfile></StudProfile>}/>
                     </Route>
                 </Routes>
             </BrowserRouter>
