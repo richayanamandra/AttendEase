@@ -1,6 +1,6 @@
 export default function ClassCard({item}){
     return(
-        <div className="flex w-[90%] border bg-[#181b20] rounded-xl border-gray-600 my-4 justify-between p-4 text-white container mx-auto">
+        <div className="flex w-[90%] border bg-[#181b20] rounded-xl border-gray-600 my-4 justify-between p-4 text-white container mx-auto hover:bg-[#1d1f26]">
             <div>
                 <h1>{item.grade}</h1>
                 <h2 className="text-gray-500">{item.time}</h2>
