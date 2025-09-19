@@ -1,6 +1,6 @@
 
 import Flap from "../Components/Flap";
-const grades = [
+export const grades = [
   {
     grade: "Grade 5",
     students: [

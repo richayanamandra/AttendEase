@@ -1,6 +1,30 @@
-import React from "react";
+import React, { useState ,useRef, useEffect} from "react";
 import { Eye,EllipsisVertical } from "lucide-react";
+import StudMenu from "./StudMenu";
+import { Link } from "react-router"; 
+
 export default function StudCard({stud,grade}){
+    const [menuOpen, setMenuOpen] = useState(false);
+    const menuRef = useRef(null);
+
+  
+    useEffect(() => {
+        function handleClickOutside(event) {
+            if (menuRef.current && !menuRef.current.contains(event.target)) {
+                setMenuOpen(false);
+            }
+        }
+
+        if (menuOpen) {
+        document.addEventListener("mousedown", handleClickOutside);
+        } else {
+        document.removeEventListener("mousedown", handleClickOutside);
+        }
+
+        return () => {
+        document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [menuOpen]);
     return(
         <div className="text-white border border-gray-500 rounded-xl flex justify-between items-center bg-[#101114] hover:bg-[#1d1f26] cursor-pointer">
             <div className="flex p-3 gap-3 items-center">
@@ -19,13 +43,24 @@ export default function StudCard({stud,grade}){
                     </div>
                 </div>
             </div>
-            <div className="flex gap-10 items-center mr-5">
+            <div className="flex gap-10 items-center mr-5 relative" ref={menuRef}>
                 <div className="flex flex-col justify-center text-center">
                     <p>{`${stud.attendance}%`}</p>
                     <span className="text-[14px] text-gray-500">Attendance</span>
                 </div>
-                <div className="p-2 rounded-2xl hover:bg-blue-500 cursor-pointer"><Eye size={24}/></div>
-                <div className="p-2 rounded-2xl hover:bg-blue-500 cursor-pointer"><EllipsisVertical size={24}/></div>
+                <Link to={`/studentProflie/${stud.id}`}>
+                    <div className="p-2 rounded-2xl hover:bg-blue-500 cursor-pointer">
+                        <Eye size={24} />
+                    </div>
+                </Link>
+                <div
+                    className="p-2 rounded-2xl hover:bg-blue-500 cursor-pointer"
+                    onClick={() => setMenuOpen(!menuOpen)}
+                    >
+                    <EllipsisVertical size={24} />
+                </div>
+
+                {menuOpen && <StudMenu onClose={() => setMenuOpen(false)} id={stud.id} />}
             </div>
         </div>
     )
