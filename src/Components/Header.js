@@ -1,4 +1,4 @@
-import { BookOpen, House, Shapes, ClipboardMinus, UserCheck, Settings, Search } from "lucide-react";
+import { BookOpen, House, Shapes, ClipboardMinus, UserCheck, Settings, Search,ScanFace } from "lucide-react";
 import { Link } from "react-router"; 
 export default function Header(){
     return(
@@ -19,10 +19,12 @@ export default function Header(){
                     <Shapes size={24} />
                     Classes
                 </button>
-                <button className="flex gap-1 text-white hover:bg-gray-500 hover:text-black rounded-md px-3 py-2">
-                    <ClipboardMinus size={24} />
-                    Reports
-                </button>
+                <Link to="/scan">
+                    <button className="flex gap-1 text-white hover:bg-gray-500 hover:text-black rounded-md px-3 py-2">
+                        <ScanFace size={24} />
+                        Scan
+                    </button>
+                </Link>
                 <Link to="/attendance">
                     <button className="flex gap-1 text-white hover:bg-gray-500 hover:text-black rounded-md px-3 py-2">
                         <UserCheck size={24} />

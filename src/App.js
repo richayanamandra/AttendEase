@@ -5,6 +5,7 @@ import HomePage from "./Pages/HomePage";
 import Dashboard from "./Pages/Dashboard";
 import Attendance from "./Pages/Attendance";
 import StudProfile from "./Pages/StudProfile";
+import ScanPage from "./Pages/ScanPage";
 function App(){
     return(
         <>
@@ -15,6 +16,7 @@ function App(){
                         <Route path="/dashboard" element={<Dashboard></Dashboard>}/>
                         <Route path="/attendance" element={<Attendance></Attendance>}/>
                         <Route path="/studentProflie/:id" element={<StudProfile></StudProfile>}/>
+                        <Route path="/scan" element={<ScanPage></ScanPage>}/>
                     </Route>
                 </Routes>
             </BrowserRouter>
