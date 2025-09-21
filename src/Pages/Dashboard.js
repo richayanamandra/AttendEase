@@ -1,6 +1,7 @@
 import { Calendar, UserCheck, Utensils,UsersRound,TrendingUpDown } from "lucide-react";
 import DashCard from "../Components/DashCard";
 import ClassCard from "../Components/ClassCard";
+import { Link } from "react-router"; 
 const dashboardStats = [
   {
     id: 1,
@@ -109,22 +110,30 @@ export default function Dashboard(){
                             <p className="text-2xl text-white font-bold ml-1">Quick Actions</p>
                         </div>
                         <div className="flex flex-col items-start text-white">
-                            <div className="flex m-4 border p-2 border-gray-500 hover:bg-gray-500 hover:text-black rounded-md px-3 py-2 cursor-pointer">
-                                <UserCheck size={24} />
-                                <p className="ml-2 ">Take Class Attendance</p>
-                            </div>
-                            <div className="flex m-4 border p-2 border-gray-500 hover:bg-gray-500 hover:text-black rounded-md px-3 py-2 cursor-pointer">
-                                <Utensils size={24} />
-                                <p className="ml-2 ">Mid-Day Meal Attendance</p>
-                            </div>
-                            <div className="flex m-4 border p-2 border-gray-500 hover:bg-gray-500 hover:text-black rounded-md px-3 py-2 cursor-pointer">
-                                <UsersRound size={24} />
-                                <p className="ml-2 ">View All Students</p>
-                            </div>
-                            <div className="flex m-4 border p-2 border-gray-500 hover:bg-gray-500 hover:text-black rounded-md px-3 py-2 cursor-pointer">
-                                <TrendingUpDown size={24} />
-                                <p className="ml-2 ">Manage Attendance</p>
-                            </div>
+                            <Link to="/scan">
+                              <div className="flex m-4 border p-2 border-gray-500 hover:bg-gray-500 hover:text-black rounded-md px-3 py-2 cursor-pointer">
+                                  <UserCheck size={24} />
+                                  <p className="ml-2 ">Take Class Attendance</p>
+                              </div>
+                            </Link>
+                            <Link to="/scan">
+                              <div className="flex m-4 border p-2 border-gray-500 hover:bg-gray-500 hover:text-black rounded-md px-3 py-2 cursor-pointer">
+                                  <Utensils size={24} />
+                                  <p className="ml-2 ">Mid-Day Meal Attendance</p>
+                              </div>
+                            </Link>
+                            <Link to="/attendance">
+                              <div className="flex m-4 border p-2 border-gray-500 hover:bg-gray-500 hover:text-black rounded-md px-3 py-2 cursor-pointer">
+                                  <UsersRound size={24} />
+                                  <p className="ml-2 ">View All Students</p>
+                              </div>
+                            </Link>
+                            <Link to="/attendance">
+                              <div className="flex m-4 border p-2 border-gray-500 hover:bg-gray-500 hover:text-black rounded-md px-3 py-2 cursor-pointer">
+                                  <TrendingUpDown size={24} />
+                                  <p className="ml-2 ">Manage Attendance</p>
+                              </div>
+                            </Link>
                         </div>
                     </div>
                 </div>
