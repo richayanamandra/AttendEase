@@ -2,6 +2,8 @@ import React, { useState, useRef, useEffect } from "react";
 import { Eye, EllipsisVertical } from "lucide-react";
 import StudMenu from "./StudMenu";
 import { Link } from "react-router";
+import MealAttendance from "./MealAttendance";
+import ClassAttendance from "./ClassAttendance";
 
 export default function StudCard({ stud }) {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -51,6 +53,12 @@ export default function StudCard({ stud }) {
         </div>
       </div>
       <div className="flex gap-10 items-center mr-5 relative" ref={menuRef}>
+        <div>
+            <ClassAttendance stud={stud}></ClassAttendance>
+        </div>
+        <div>
+            <MealAttendance stud={stud}></MealAttendance>
+        </div>
         <div className="flex flex-col justify-center text-center">
           <p>95%</p>
           <span className="text-[14px] text-gray-500">Attendance</span>
