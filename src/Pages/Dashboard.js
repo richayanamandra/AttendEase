@@ -1,4 +1,4 @@
-import { Calendar, UserCheck, Utensils,UsersRound,TrendingUpDown } from "lucide-react";
+import { Calendar, UserCheck, Utensils,UsersRound,TrendingUpDown,X } from "lucide-react";
 import DashCard from "../Components/DashCard";
 import ClassCard from "../Components/ClassCard";
 import { Link } from "react-router"; 
@@ -132,6 +132,12 @@ export default function Dashboard(){
                               <div className="flex m-4 border p-2 border-gray-500 hover:bg-gray-500 hover:text-black rounded-md px-3 py-2 cursor-pointer">
                                   <TrendingUpDown size={24} />
                                   <p className="ml-2 ">Manage Attendance</p>
+                              </div>
+                            </Link>
+                            <Link to="/complain">
+                              <div className="flex m-4 border p-2 border-gray-500 hover:bg-gray-500 hover:text-black rounded-md px-3 py-2 cursor-pointer">
+                                  <X size={24} />
+                                  <p className="ml-2 ">Complaints</p>
                               </div>
                             </Link>
                         </div>

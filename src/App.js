@@ -6,6 +6,7 @@
     import Attendance from "./Pages/Attendance";
     import StudProfile from "./Pages/StudProfile";
     import ScanPage from "./Pages/ScanPage";
+    import Complain from "./Pages/Complain";
     function App(){
         return(
             <>
@@ -17,6 +18,7 @@
                             <Route path="/attendance" element={<Attendance></Attendance>}/>
                             <Route path="/studentProfile/:id" element={<StudProfile></StudProfile>}/>
                             <Route path="/scan" element={<ScanPage></ScanPage>}/>
+                            <Route path="/complain" element={<Complain></Complain>}/>
                         </Route>
                     </Routes>
                 </BrowserRouter>
