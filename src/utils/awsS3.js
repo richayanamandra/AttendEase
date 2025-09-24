@@ -42,7 +42,7 @@ export async function checkStatus(baseName) {
   const key = `status/${baseName}.json`;
   try {
     const res = await s3.getObject({ Bucket: BUCKET, Key: key }).promise();
-    // res.Body may be Buffer / Uint8Array / ArrayBuffer / Blob depending on runtime
+    
     let bodyStr;
     if (res.Body instanceof ArrayBuffer) {
       bodyStr = new TextDecoder().decode(res.Body);
@@ -51,15 +51,15 @@ export async function checkStatus(baseName) {
     } else if (typeof res.Body === "string") {
       bodyStr = res.Body;
     } else if (res.Body && typeof res.Body.text === "function") {
-      // Blob-like
+      
       bodyStr = await res.Body.text();
     } else {
-      // Fallback
+      
       bodyStr = res.Body.toString();
     }
     return JSON.parse(bodyStr);
   } catch (err) {
-    // not found or other error -> return null
+    
     return null;
   }
 }

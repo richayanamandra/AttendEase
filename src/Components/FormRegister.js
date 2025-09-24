@@ -14,7 +14,7 @@ export default function FormRegister({ onSubmit, submitLabel = "Register Student
       <input className="p-2 rounded-xl bg-gray-800" name="emergencyContactName" placeholder="Emergency Contact Name" required />
       <input className="p-2 rounded-xl bg-gray-800" name="emergencyContactPhone" placeholder="Emergency Contact Phone" required />
 
-      <button type="submit" className="px-4 py-2 bg-blue-600 rounded-xl hover:bg-blue-700 mt-3 absolute bottom-10 right-32 w-[400px]">
+      <button type="submit" className="px-4 py-2 bg-blue-400 rounded-xl hover:bg-blue-700 mt-3 absolute bottom-10 right-32 w-[400px]">
         {submitLabel}
       </button>
     </form>

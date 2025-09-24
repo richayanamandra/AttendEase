@@ -13,11 +13,11 @@ export default function ScanPage() {
 
   const videoRef = useRef(null);
 
-  // start/stop camera depending on tab
+
   useEffect(() => {
     let mounted = true;
     async function enableCamera() {
-      // always start camera for attendance / meal or registration (we want live preview)
+      
       if (!mounted) return;
       try {
         const stream = await navigator.mediaDevices.getUserMedia({ video: true });
@@ -39,13 +39,13 @@ export default function ScanPage() {
         videoRef.current.srcObject = null;
       }
     };
-  }, [isClicked]); // restart camera when switching tabs
+  }, [isClicked]); 
 
-  // callback from PhotoCapture: either a captured File or selected file
+  
   function handleFileSelected(file) {
     setCapturedFile(file);
 
-    // preview
+    
     const reader = new FileReader();
     reader.onload = () => setCapturedPreview(reader.result);
     reader.readAsDataURL(file);
@@ -54,15 +54,12 @@ export default function ScanPage() {
     setTimeout(() => setToastMessage(null), 2000);
   }
 
-  // helper: convert baseName for filenames (safe)
+  
   function normalizeName(name) {
     return name.replace(/\s+/g, "_").replace(/[^a-zA-Z0-9_-]/g, "");
   }
 
-  // main registration flow replicating the HTML logic:
-  // 1) Upload photo to S3 (baseFileName.jpg)
-  // 2) poll status/{baseFileName}.json (up to 10 tries)
-  // 3) upload metadata JSON baseFileName.json
+  
   async function handleRegisterSubmit(e) {
     e.preventDefault();
     setStatus("Registering student...");
@@ -85,7 +82,7 @@ export default function ScanPage() {
 
     const baseFileName = normalizeName(`${data.firstName}_${data.lastName}`) || `student_${Date.now()}`;
 
-    // determine photo file
+    
     let photoFile = capturedFile || null;
 
     if (!photoFile) {
@@ -96,11 +93,11 @@ export default function ScanPage() {
     }
 
     try {
-      // 1) upload photo
+      
       setStatus("Uploading photo...");
       await uploadToS3(photoFile, `${baseFileName}.jpg`);
 
-      // 2) poll status JSON (status/{baseFileName}.json), same as HTML script
+      
       setStatus("Waiting for face indexing (polling)...");
       let statusJson = null;
       for (let i = 0; i < 10; i++) {
@@ -117,21 +114,21 @@ export default function ScanPage() {
         return;
       }
 
-      // 3) upload metadata JSON
+      
       setStatus("Uploading metadata...");
       await uploadJson(data, `${baseFileName}.json`);
 
       setStatus("Registration successful!");
       setFeedback({ ...data, message: "Student registered successfully" });
-      setToastMessage("🎉 Student Registered!");
+      setToastMessage("Student Registered!");
       setTimeout(() => setToastMessage(null), 3000);
 
-      // clear captured file & preview and reset form
+      
       setCapturedFile(null);
       setCapturedPreview(null);
       form.reset();
 
-      // restart camera (so video shows again)
+      
       try {
         if (videoRef.current) {
           const stream = await navigator.mediaDevices.getUserMedia({ video: true });
@@ -143,12 +140,12 @@ export default function ScanPage() {
     } catch (err) {
       console.error("Registration error:", err);
       setStatus("Error during registration: " + (err.message || err));
-      setToastMessage("❌ Registration failed");
+      setToastMessage("Registration failed");
       setTimeout(() => setToastMessage(null), 3000);
     }
   }
 
-  // Attendance handlers (unchanged): capture image from video, send to API endpoint
+  
   async function captureAttendance() {
     const canvas = document.createElement("canvas");
     const video = videoRef.current;
@@ -162,7 +159,7 @@ export default function ScanPage() {
     const base64 = canvas.toDataURL("image/jpeg").split(",")[1];
     setStatus("Marking attendance...");
     try {
-      // this assumes you have an API endpoint configured
+      
       const API_BASE = process.env.PARCEL_API_BASE || "";
       const res = await fetch(`${API_BASE}/mark-attendance`, {
         method: "POST",
