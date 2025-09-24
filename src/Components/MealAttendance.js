@@ -35,12 +35,12 @@ export default function MealAttendance({ stud }) {
         const found = data.find((rec) => {
           if (rec.date !== todayStr) return false;
 
-          // Prefer rollNumber match if present in record and stud
+          
           if (rec.rollNumber && stud.rollNumber) {
             return String(rec.rollNumber) === String(stud.rollNumber);
           }
 
-          // Fallback to matching firstName + lastName (case-insensitive)
+          
           if (rec.firstName && rec.lastName && stud.firstName && stud.lastName) {
             return (
               rec.firstName.toLowerCase().trim() === stud.firstName.toLowerCase().trim() &&
@@ -64,7 +64,7 @@ export default function MealAttendance({ stud }) {
     return () => ac.abort();
   }, [stud]);
 
-  // Render
+  
   if (!stud) return null;
   if (loading) return <div className="text-gray-400 text-sm">Checking...</div>;
   if (error) return <div className="text-red-400 text-sm">Err</div>;

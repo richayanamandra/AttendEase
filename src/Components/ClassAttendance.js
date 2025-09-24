@@ -25,7 +25,7 @@ export default function ClassAttendance({ stud }) {
         if (!res.ok) throw new Error("Failed to fetch data");
         const data = await res.json();
 
-        // format today's date as YYYY-MM-DD (local)
+        // format as YYYY-MM-DD
         const today = new Date();
         const yyyy = today.getFullYear();
         const mm = String(today.getMonth() + 1).padStart(2, "0");
@@ -35,12 +35,12 @@ export default function ClassAttendance({ stud }) {
         const found = data.find((rec) => {
           if (rec.date !== todayStr) return false;
 
-          // Prefer rollNumber match if present in record and stud
+          
           if (rec.rollNumber && stud.rollNumber) {
             return String(rec.rollNumber) === String(stud.rollNumber);
           }
 
-          // Fallback to matching firstName + lastName (case-insensitive)
+          
           if (rec.firstName && rec.lastName && stud.firstName && stud.lastName) {
             return (
               rec.firstName.toLowerCase().trim() === stud.firstName.toLowerCase().trim() &&
@@ -64,7 +64,7 @@ export default function ClassAttendance({ stud }) {
     return () => ac.abort();
   }, [stud]);
 
-  // Render
+  
   if (!stud) return null;
   if (loading) return <div className="text-gray-400 text-sm">Checking...</div>;
   if (error) return <div className="text-red-400 text-sm">Err</div>;
