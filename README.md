@@ -16,7 +16,7 @@
 * 🍴 Midday meal attendance tracking
 * 📊 Student dashboard with profiles
 * 📱 Scan-based attendance
-* 📝 Complaint registration system
+* 📝 Complaint registration system with Email alert to higher authority
 * ☁️ Fully serverless AWS backend
 
 ---
@@ -72,10 +72,6 @@ npm install
 
 ```bash
 npm run dev
-```
-
-The app will be available at [http://localhost:5173](http://localhost:5173).
-
 ---
 
 ## 🔑 Environment Variables
