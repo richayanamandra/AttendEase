@@ -23,7 +23,7 @@
 
 ## 🏗️ Architecture
 
-![Architecture Diagram](./architecture.png)
+![Architecture Diagram](./AttendEase Architecture.png)
 
 **Frontend:** React + Tailwind + Parcel
 **Backend:** AWS (API Gateway, Lambda, DynamoDB, S3, Rekognition, SNS, Cognito)
